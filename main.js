@@ -22,7 +22,7 @@ map.addControl(new mapboxgl.GeolocateControl({
 const dateTimes = [];
 
 // Set the start and end date
-const startDate = new Date('2023-12-03T09:00:00');
+const startDate = new Date('2023-12-03T18:00:00');
 const endDate = new Date('2023-12-20T23:00:00');
 
 // Loop through the hours between start and end dates
@@ -74,7 +74,8 @@ dateTimes.forEach(dateTime => {
 });
 
 let snow_legend = './snow-legend.png'
-let precp_type_legend = 'precip-type-legend.png'
+let precp_type_legend = './precip-type-legend.png'
+let precip_legend = './precip-legend.png'
 let wind_legend = './wind-legend.png'
 let temp_legend = './temp-legend.png'
 
@@ -83,11 +84,29 @@ let variable_dict = {
   'Precip-Type': ['Precipitation Type & Rate','./precip-type-legend.png'],
   'Wind': ['Wind Speed (kt)','wind-legend.png'],
   'Temp': ['Temperature (°F)','temp-legend.png'],
-  'Wind-Chill': ['Wind Chill (°F)','temp-legend.png']
+  'Wind-Chill': ['Wind Chill (°F)','temp-legend.png'],
+  'Precip': ['Accumulated Precipitation','./precip-legend.png']
 }
 
 let variable = 'P-Type'
 map.on('load', function() {
+  // Add a GeoJSON source to the map
+  map.addSource('coastlines', {
+    type: 'geojson',
+    data: './GeoJSONs/coastlines.geojson' // Path to your GeoJSON file
+  });
+
+  // Add a layer to display the GeoJSON data
+  map.addLayer({
+    id: 'coastlines',
+    type: 'line', // Change the type based on your GeoJSON geometry type
+    source: 'coastlines',
+    paint: {
+      'line-color': 'hsl(240, 18%, 29%)',
+      'line-width': 0.5
+    }
+  },"label_airport");
+
   var detailsElement = document.querySelector('.mapboxgl-compact-show');
   if (detailsElement) {
         // Remove the 'open' attribute
@@ -160,7 +179,7 @@ map.on('load', function() {
     let selectedFrame = document.getElementById('dateSlider').value
     map.getSource('image-source').updateImage({ url: `./Exports/GFS/${variable}/${dateTimes[selectedFrame]}.png` });
     currentDate.textContent = formattedDateTimesET[selectedFrame];
-    document.getElementById('legend').src = precp_type_legend
+    document.getElementById('legend').src = precip_legend
   })
 
   /*wind.addEventListener('click', function() {

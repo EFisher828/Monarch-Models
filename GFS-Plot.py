@@ -13,7 +13,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 from datetime import datetime
 
-ds = xr.open_dataset('http://nomads.ncep.noaa.gov:80/dods/gfs_0p25/gfs20231203/gfs_0p25_06z')
+ds = xr.open_dataset('http://nomads.ncep.noaa.gov:80/dods/gfs_0p25/gfs20231203/gfs_0p25_12z')
 print(ds)
 for i in range(128):
     #Lat: 721  Lon: 1440
