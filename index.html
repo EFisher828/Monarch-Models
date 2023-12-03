@@ -18,7 +18,7 @@
             <div id="map" class="webmap-new"></div>
           </div>
           <div class="map-info-embed">
-            <p id="currentDate" class="slider-header">Dec 01, 2023, 04 AM EST</p>
+            <p id="currentDate" class="slider-header">Dec 03, 2023, 04 AM EST</p>
           </div>
           <div class="sliderOverlay">
             <input type="range" id="dateSlider" class="slider" min="0" max="127" value="0" step="1">
@@ -38,7 +38,15 @@
               <input type="checkbox" id="snowfall" name="weather" value="snowfall">
               <label for="snowfall">Accumulated Snowfall (inches, 10:1)</label>
             </li>
+            <li>
+              <input type="checkbox" id="precip" name="weather" value="precip">
+              <label for="snowfall">Accumulated Precipitation (inches)</label>
+            </li>
           </ul>
+        </div>
+        <div class="toggleSlider">
+          <button id="hideSlider">Hide Slider Bar</button>
+          <button id="showSlider">Show Slider Bar</button>
         </div>
         <button id="saveMapButton" class="downloadButton">Save Map as Image</button>
       </div>

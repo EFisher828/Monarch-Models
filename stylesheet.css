@@ -32,6 +32,17 @@ footer a {
   color: white;
 }
 
+.toggleSlider {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  bottom: 15%;
+  width: max-content;
+}
+
 .sliderDiv {
   position: relative;
   margin-left: auto;

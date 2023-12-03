@@ -22,7 +22,7 @@ map.addControl(new mapboxgl.GeolocateControl({
 const dateTimes = [];
 
 // Set the start and end date
-const startDate = new Date('2023-12-01T09:00:00');
+const startDate = new Date('2023-12-03T09:00:00');
 const endDate = new Date('2023-12-20T23:00:00');
 
 // Loop through the hours between start and end dates
@@ -134,9 +134,10 @@ map.on('load', function() {
 
   const snow = document.getElementById('snowfall')
   const precipType = document.getElementById('preciptype')
-  const wind = document.getElementById('wind')
-  const temp = document.getElementById('temp')
-  const windChill = document.getElementById('windchill')
+  const precip = document.getElementById('precip')
+  //const wind = document.getElementById('wind')
+  //const temp = document.getElementById('temp')
+  //const windChill = document.getElementById('windchill')
 
   snow.addEventListener('click', function() {
     variable = 'Snow'
@@ -148,6 +149,14 @@ map.on('load', function() {
 
   precipType.addEventListener('click', function() {
     variable = 'P-Type'
+    let selectedFrame = document.getElementById('dateSlider').value
+    map.getSource('image-source').updateImage({ url: `./Exports/GFS/${variable}/${dateTimes[selectedFrame]}.png` });
+    currentDate.textContent = formattedDateTimesET[selectedFrame];
+    document.getElementById('legend').src = precp_type_legend
+  })
+
+  precip.addEventListener('click', function() {
+    variable = 'Precip'
     let selectedFrame = document.getElementById('dateSlider').value
     map.getSource('image-source').updateImage({ url: `./Exports/GFS/${variable}/${dateTimes[selectedFrame]}.png` });
     currentDate.textContent = formattedDateTimesET[selectedFrame];
@@ -247,6 +256,18 @@ function captureHighResolutionImage(map, callback) {
     callback(dataURL);
   };
 }
+
+const sliderButtonOff = document.getElementById('hideSlider')
+
+sliderButtonOff.addEventListener('click', () => {
+  document.getElementById('dateSlider').style.display = 'none'
+})
+
+const sliderButtonOn = document.getElementById('showSlider')
+
+sliderButtonOn.addEventListener('click', () => {
+  document.getElementById('dateSlider').style.display = 'block'
+})
 
 // Add a click event listener to the button
 document.getElementById('saveMapButton').addEventListener('click', () => {
