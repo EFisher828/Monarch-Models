@@ -1,0 +1,346 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Montserrat, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 0.1em 0;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 0.1em;
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.3);
+}
+
+footer a {
+  color: white;
+}
+
+.sliderDiv {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.sliderOverlay {
+  position: absolute;
+  background-color: rgba(250, 250, 250, 1);
+  -moz-box-shadow: 0 0 4px grey;
+  -webkit-box-shadow: 0 0 4px grey;
+  box-shadow: 0 0 4px grey;
+  border-radius: 10px;
+  bottom: 4vh;
+  left: 0;
+  right: 0;
+  width: 80%;
+  height: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  width:96%;
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
+  -webkit-appearance: none;
+  height: 7px;
+  border-radius: 5px;
+  background: #333333;
+  outline: none;
+  opacity: 1;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: white;
+  border: 5px solid #333333;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: white;
+  border: 5px solid #333333;
+  cursor: pointer;
+}
+
+.slider-header {
+  color: #333333;
+  text-align: center;
+  padding-top: 0px;
+  padding-bottom: 4px;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.container-new {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  position: relative;
+  line-height: 22px;
+  margin-bottom: 0px;
+  padding-top: 20px;
+}
+
+.left-div {
+  flex: 2.5;
+  padding: 10px;
+}
+
+.right-div {
+  flex: 1;
+  max-width: 25%; /* 1/6th of the width */
+  min-width: 25%;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: 70vh;
+  position: relative;
+}
+
+.heading-large {
+  font-size: 1.5vw;
+  font-weight: 600;
+  margin: 0px;
+  color: #333;
+}
+
+.more-info {
+  margin: 10px 0px;
+  font-size: 1vw;
+  line-height: 1.4vw;
+}
+
+.container-new h2 {
+  font-size: 18px;
+  color: #333;
+}
+
+.container-new p {
+  font-size: 16px;
+  color: #555;
+}
+
+.container-new ul {
+  list-style: disc;
+  margin-left: 20px;
+  padding: 0;
+  text-align: left;
+}
+
+.container-new li {
+  font-size: 16px;
+  color: #555;
+  margin: 10px;
+}
+
+/* Add some spacing for better readability */
+.container-new p + p {
+  margin-top: 20px;
+}
+
+.slider-text {
+  color: #333333;
+  text-align: center;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.webmap-new {
+  height:75vh;
+  width:90%;
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
+  border-radius: 20px;
+}
+
+#more-info {
+  display: none;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+#learn-more-button {
+  display: block;
+  background-color: lightgray;
+  text-align: center;
+  cursor: pointer;
+}
+
+.learn-more-button {
+  padding: 2px;
+  border-radius: 10px;
+}
+
+.map-layers {
+  width: max-content;
+  height: max-content;
+  font-weight: bold;
+}
+
+.map-info-embed {
+  text-align: center;
+  width: max-content;
+  height: max-content;
+  position: absolute; /* Position it absolutely within the .container */
+  z-index: 1;
+  background-color: #fff; /* Background color for .map-info */
+  padding: 0px 8px; /* Adjust padding as needed */
+  border-radius: 10px; /* Add border radius if desired */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add box shadow if desired */
+  top: 5%; /* Center vertically */
+  left: 16%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  background-color: rgba(250, 250, 250, 1); /* Add your desired background color */
+  font-weight: bold;
+  line-height: 0px;
+}
+
+.checkbox-list {
+    list-style: none;
+    padding: 0;
+}
+
+.checkbox-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkbox-list input[type="checkbox"] {
+    margin-right: 10px;
+    margin-left: 0px;
+}
+
+.checkbox-list label {
+    cursor: pointer;
+}
+
+/* Style for the checked state */
+.checkbox-list input[type="checkbox"]:checked + label {
+    color: #007BFF; /* Change the text color for the selected item */
+}
+
+.downloadButton{
+  display: block;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #3498db; /* Button background color */
+  color: #fff; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  bottom: 0%;
+  width: max-content;
+}
+
+/* Hover effect */
+.downloadButton:hover {
+  background-color: #2980b9; /* Darker background on hover */
+}
+
+@media screen and (max-width: 991px) {
+  .container-new {
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+
+  .left-div {
+    max-width: 100%;
+    min-height: max-content;
+    flex: 1;
+  }
+
+  .right-div {
+    flex: 1;
+    margin-top: 40px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .heading-large {
+    font-size: 5vw;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .sliderOverlay {
+    margin-bottom: 15px;
+  }
+
+  .map-info-embed {
+    top: 8%;
+    left: 25.5%;
+  }
+
+  .map-layers {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #legend {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .heading-large {
+    font-size: 6vw;
+    margin-bottom: 20px;
+  }
+
+  .right-div {
+    margin-top: 20px;
+  }
+
+  .map-info-embed {
+    top: 12%;
+    left: 50%
+  }
+}
