@@ -22,8 +22,8 @@ map.addControl(new mapboxgl.GeolocateControl({
 const dateTimes = [];
 
 // Set the start and end date
-const startDate = new Date('2023-12-03T18:00:00');
-const endDate = new Date('2023-12-20T23:00:00');
+const startDate = new Date('2023-12-10T18:00:00');
+const endDate = new Date('2023-12-30T23:00:00');
 
 // Loop through the hours between start and end dates
 let currentDate = startDate;
@@ -40,8 +40,6 @@ while (currentDate <= endDate) {
   // Increment the current date by 1 hour
   currentDate = new Date(currentDate.getTime() + (60 * 60 * 3000));
 }
-
-console.log(dateTimes)
 
 // Initialize an empty array to store the formatted date-time strings in Eastern Time
 const formattedDateTimesET = [];
@@ -81,7 +79,7 @@ let temp_legend = './temp-legend.png'
 
 let variable_dict = {
   'Snow': ['Accumulated Snowfall (in)','./snow-legend.png'],
-  'Precip-Type': ['Precipitation Type & Rate','./precip-type-legend.png'],
+  'P-Type': ['Precipitation Type & Rate','./precip-type-legend.png'],
   'Wind': ['Wind Speed (kt)','wind-legend.png'],
   'Temp': ['Temperature (°F)','temp-legend.png'],
   'Wind-Chill': ['Wind Chill (°F)','temp-legend.png'],
@@ -122,7 +120,7 @@ map.on('load', function() {
   // Initialize the image source
   map.addSource('image-source', {
     'type': 'image',
-    'url': `./Exports/GFS/P-Type/${dateTimes[24]}.png`, // Initial date
+    'url': `./Exports/GFS/P-Type/${dateTimes[0]}.png`, // Initial date
     'coordinates': [
         [-143.0, 56.8],
         [-50.2, 56.8],
@@ -221,17 +219,22 @@ map.on('load', function() {
 
 function captureHighResolutionImage(map, callback) {
   let selectedFrame = document.getElementById('dateSlider').value;
+  console.log(variable)
 
   // Define the dimensions of the canvas, including whitespace
   const canvasWidth = 1920; // HD width
-  const canvasHeight = 1080; // HD height
+  const canvasHeight = 1280; // HD height
   const whitespaceSizeTop = 40; // Adjust the top whitespace size as needed
   let whitespaceSizeBottom;
-  if (document.getElementById('legend').src = './temp-legend.png') {
+  if (variable == 'Temp') {
     whitespaceSizeBottom = 120 // Adjust the bottom whitespace size as needed
-  } else if (document.getElementById('legend').src != './temp-legend.png'){
+  } else if (variable == 'Precip') {
+    whitespaceSizeBottom = 100
+  } else {
     whitespaceSizeBottom = 90
-  }
+  }/*else if (document.getElementById('legend').src != './temp-legend.png') {
+    whitespaceSizeBottom = 90
+  }*/
 
   // Create an offscreen canvas with the new dimensions
   const offscreenCanvas = document.createElement('canvas');
@@ -310,7 +313,7 @@ document.getElementById('saveMapButton').addEventListener('click', () => {
       // Create an anchor element with the image data URL and trigger a download
       const downloadLink = document.createElement('a');
       downloadLink.href = highResDataURL;
-      downloadLink.download = './syracuse-winter-forecast.png'; // Set the file name
+      downloadLink.download = './saved-model-output.png'; // Set the file name
       downloadLink.click();
     });
   });

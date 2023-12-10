@@ -23,7 +23,7 @@ conus_wide = [-143.0,-50.2,16.5,56.8]
 conus_extent = [-109.38,-59.91,26.43,51.69]
 ax.set_extent(conus_wide,ccrs.PlateCarree())
     
-ds = xr.open_dataset('http://nomads.ncep.noaa.gov:80/dods/gfs_0p25/gfs20231203/gfs_0p25_12z')
+ds = xr.open_dataset('http://nomads.ncep.noaa.gov:80/dods/gfs_0p25/gfs20231210/gfs_0p25_12z')
 print(ds)
 for i in range(128):
     #Lat: 721  Lon: 1440
