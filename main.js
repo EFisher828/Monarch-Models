@@ -22,8 +22,8 @@ map.addControl(new mapboxgl.GeolocateControl({
 const dateTimes = [];
 
 // Set the start and end date
-const startDate = new Date('2023-12-10T18:00:00');
-const endDate = new Date('2023-12-30T23:00:00');
+const startDate = new Date('2023-12-31T18:00:00');
+const endDate = new Date('2024-01-20T23:00:00');
 
 // Loop through the hours between start and end dates
 let currentDate = startDate;
