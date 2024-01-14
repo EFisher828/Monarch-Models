@@ -2,7 +2,7 @@ const map = new maplibregl.Map({
   container: 'map',
   style: './monarch_style.json',
   zoom: 3.5,
-  center: [-96.601,37.852],
+  center: [-95.901,37.852],
   maxBounds: [[-143.0,16.5],[-50.2,56.8]],
   pitchWithRotate: false,
   dragRotate: false,
@@ -22,8 +22,8 @@ map.addControl(new mapboxgl.GeolocateControl({
 const dateTimes = [];
 
 // Set the start and end date
-const startDate = new Date('2023-12-31T18:00:00');
-const endDate = new Date('2024-01-20T23:00:00');
+const startDate = new Date('2024-01-14T18:00:00');
+const endDate = new Date('2024-01-30T23:00:00');
 
 // Loop through the hours between start and end dates
 let currentDate = startDate;
@@ -38,7 +38,7 @@ while (currentDate <= endDate) {
   dateTimes.push(`${year}${month}${day}${hour}`);
 
   // Increment the current date by 1 hour
-  currentDate = new Date(currentDate.getTime() + (60 * 60 * 3000));
+  currentDate = new Date(currentDate.getTime() + (60 * 60 * 6000));
 }
 
 // Initialize an empty array to store the formatted date-time strings in Eastern Time
@@ -79,14 +79,14 @@ let temp_legend = './temp-legend.png'
 
 let variable_dict = {
   'Snow': ['Accumulated Snowfall (in)','./snow-legend.png'],
-  'P-Type': ['Precipitation Type & Rate','./precip-type-legend.png'],
+  'ptype': ['Precipitation Type & Rate','./precip-type-legend.png'],
   'Wind': ['Wind Speed (kt)','wind-legend.png'],
   'Temp': ['Temperature (°F)','temp-legend.png'],
   'Wind-Chill': ['Wind Chill (°F)','temp-legend.png'],
   'Precip': ['Accumulated Precipitation','./precip-legend.png']
 }
 
-let variable = 'P-Type'
+let variable = 'ptype'
 map.on('load', function() {
   // Add a GeoJSON source to the map
   map.addSource('coastlines', {
@@ -120,7 +120,7 @@ map.on('load', function() {
   // Initialize the image source
   map.addSource('image-source', {
     'type': 'image',
-    'url': `./Exports/GFS/P-Type/${dateTimes[0]}.png`, // Initial date
+    'url': `./Exports/GFS/ptype/${dateTimes[0]}.png`, // Initial date
     'coordinates': [
         [-143.0, 56.8],
         [-50.2, 56.8],
@@ -165,7 +165,7 @@ map.on('load', function() {
   });
 
   precipType.addEventListener('click', function() {
-    variable = 'P-Type'
+    variable = 'ptype'
     let selectedFrame = document.getElementById('dateSlider').value
     map.getSource('image-source').updateImage({ url: `./Exports/GFS/${variable}/${dateTimes[selectedFrame]}.png` });
     currentDate.textContent = formattedDateTimesET[selectedFrame];
@@ -231,7 +231,7 @@ function captureHighResolutionImage(map, callback) {
   } else if (variable == 'Precip') {
     whitespaceSizeBottom = 100
   } else {
-    whitespaceSizeBottom = 90
+    whitespaceSizeBottom = 140
   }/*else if (document.getElementById('legend').src != './temp-legend.png') {
     whitespaceSizeBottom = 90
   }*/
