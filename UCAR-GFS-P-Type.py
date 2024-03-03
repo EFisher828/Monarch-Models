@@ -36,7 +36,7 @@ def readLocalData(data_path,extent):
 
 def readCloudData(extent,prateShape,i):
     # Open the NOMADS GFS file
-    ds = xr.open_dataset('http://nomads.ncep.noaa.gov:80/dods/gfs_0p25/gfs20240218/gfs_0p25_06z')
+    ds = xr.open_dataset('http://nomads.ncep.noaa.gov:80/dods/gfs_0p25/gfs20240303/gfs_0p25_06z')
         
     cropped_ds = ds.sel(lat=slice(extent[2],extent[3]), lon=slice(extent[0]+360,extent[1]+360))
     
@@ -123,7 +123,7 @@ def startScript():
         i = str(i).zfill(3)
         print(i)
         #url = f'https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20240204/06/atmos/gfs.t06z.sfluxgrbf{i}.grib2'
-        url = f'https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20240218/06/atmos/gfs.t06z.sfluxgrbf{i}.grib2'
+        url = f'https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.20240303/06/atmos/gfs.t06z.sfluxgrbf{i}.grib2'
         urllib.request.urlretrieve(url,f'./Data/GFS/MostRecent/{i}.grib2')
         
         buildMap(i,ax,extent)
